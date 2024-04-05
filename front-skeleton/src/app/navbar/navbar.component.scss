@@ -25,9 +25,7 @@ mat-nav-list {
   margin-left: 50px;
   display: flex;
   flex-direction: row;
-  width: 250px;
-
-  span,
+  width: 100%;
   a {
     font-size: large;
     color: theme.$white;
@@ -35,6 +33,12 @@ mat-nav-list {
 
     &:hover {
       transform: scale(1.2);
+    }
+
+    &.special-link {
+
+
+
     }
   }
 }

@@ -9,9 +9,25 @@ import { MajorsComponent } from "majors/majors.component"
 import { MajorsResolver } from "majors/majors.resolver"
 import { MajorStudentsResolver } from "majors/major-students/major-students.resolver"
 import { MajorStudentsComponent } from "majors/major-students/major-students.component"
+import {ProductsComponent} from "./products/products.component";
+import {ProductDetailComponent} from "./products/product-detail/product-detail.component";
+import {ContactsComponent} from "./contacts/contacts.component";
+import {AuthComponent} from "./auth/auth.component";
+import {ProfilComponent} from "./profil/profil.component";
+import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  //{ path: 'accessoires', component: AccessoiresComponent },
+  //{ path: 'collections', component: CollectionsComponent },
+  //{ path: 'goodies', component: GoodiesComponent },
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'accueil', component: ProductsComponent },
+  //{ path: 'panier', component: PanierComponent },
+  { path: 'connexion', component: AuthComponent },
+  { path: '', redirectTo: '/produits', pathMatch: 'full' }, // Redirection par défaut
+  { path: 'products/id/:id', component: ProductDetailComponent },
+  { path: "", component: ProductsComponent },
+  { path: "users", component: ProfilComponent, canActivate: [AuthGuard] },
   {
     path: "etudiants",
     component: StudentsComponent,
@@ -19,6 +35,7 @@ const routes: Routes = [
       students: StudentsResolver,
     },
   },
+  { path: 'products', component: ProductsComponent },
   {
     path: "details-etudiant/:id",
     component: StudentDetailsComponent,

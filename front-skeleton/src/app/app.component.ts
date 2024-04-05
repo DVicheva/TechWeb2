@@ -1,4 +1,5 @@
 import { Component } from "@angular/core"
+import { NavbarComponent} from "./navbar/navbar.component";
 
 @Component({
   selector: "root",
@@ -7,4 +8,6 @@ import { Component } from "@angular/core"
 })
 export class AppComponent {
   title = "front-skeleton"
+
+
 }

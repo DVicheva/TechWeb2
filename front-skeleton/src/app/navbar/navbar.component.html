@@ -2,11 +2,14 @@
   <div>
     <img src="assets/takima-logo.png" routerLink="" />
     <mat-nav-list>
-      @for (link of links; track link) {
-      <a mat-list-item routerLink="{{ link.href }}" routerLinkActive="active">
+      <a *ngFor="let link of links" mat-list-item [routerLink]="link.href" routerLinkActive="active" [ngClass]="{'special-link': link.name === 'Connexion' || link.name === 'Panier'}">
         <span>{{ link.name }}</span>
       </a>
-      }
+      <a mat-list-item [routerLink]="'connexion'" *ngIf="!isLoggedIn" routerLinkActive="active" class="special-link">
+        <span>Connexion</span>
+      </a>
+      <!-- Condition pour afficher le nom d'utilisateur s'il est connecté -->
+      <a mat-list-item [routerLink]="'users'" *ngIf="isLoggedIn" class="username"><span>{{ usernameFromAuth }}</span></a>
     </mat-nav-list>
   </div>
 </nav>

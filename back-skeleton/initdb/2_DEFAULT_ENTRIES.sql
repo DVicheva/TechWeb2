@@ -1,25 +1,51 @@
-INSERT INTO majors (id, name, description) VALUES (1, 'Informatique', 'Ouaiiis du code partout');
-INSERT INTO majors (id, name, description) VALUES (2, 'Construction', 'Beaucoup de béton et des poutres');
-INSERT INTO majors (id, name, description) VALUES (3, 'Aéronautique', 'Vive le vent');
-INSERT INTO majors (id, name, description) VALUES (4, 'Data', 'Trop cool plein de données à ordonner');
-INSERT INTO majors (id, name, description) VALUES (5, 'Energie & Environnement', 'On est full green');
-INSERT INTO majors (id, name, description) VALUES (6, 'Management', 'Des managers de qualité');
-INSERT INTO majors (id, name, description) VALUES (7, 'Santé', 'On connait tous les os et tous les muscles du corps humain');
-INSERT INTO majors (id, name, description) VALUES (8, 'Architecture durable', 'Objectif 0 carbone');
-INSERT INTO majors (id, name, description) VALUES (9, 'Design Industriel Durable', 'On resistera à la fin du pétrole');
+-- Users --
 
-INSERT INTO students (id, first_name, last_name, birthdate, major_id) VALUES (1, 'Paul', 'Harrohide', '2002-06-15', 1);
-INSERT INTO students (id, first_name, last_name, birthdate, major_id) VALUES (2, 'Jean', 'Bonbeur', '2001-08-21', 1);
-INSERT INTO students (id, first_name, last_name, birthdate, major_id) VALUES (3, 'Alain', 'Térieur', '2000-01-11', 1);
+INSERT INTO Users (username, password, first_name, last_name, email) VALUES
+ ('RayPonde', 'password123', 'Raymond', 'Ponde', 'ray.ponde@email.com'),
+ ('EllaStique', 'password123', 'Ella', 'Stique', 'ella.stique@email.com'),
+ ('SamSuffit', 'password123', 'Sam', 'Suffit', 'sam.suffit@email.com'),
+ ('AlainTerrieur', 'password123', 'Alain', 'Terrieur', 'alain.terrieur@email.com'),
+ ('MarcAssin', 'password123', 'Marc', 'Assin', 'marc.assin@email.com'),
+ ('JeanBon', 'password123', 'Jean', 'Bon', 'jean.bon@email.com');
 
-INSERT INTO courses (id, name, hours) VALUES (1, 'Spanish', 30);
-INSERT INTO courses (id, name, hours) VALUES (2, 'German', 30);
-INSERT INTO courses (id, name, hours) VALUES (3, 'Internet of Things', 30);
-INSERT INTO courses (id, name, hours) VALUES (4, 'Thermodynamic', 30);
-INSERT INTO courses (id, name, hours) VALUES (5, 'Anatomy', 30);
-INSERT INTO courses (id, name, hours) VALUES (6, 'Maths', 30);
-INSERT INTO courses (id, name, hours) VALUES (7, 'Java', 30);
-INSERT INTO courses (id, name, hours) VALUES (8, 'Lean Management', 30);
-INSERT INTO student_course (id, student_id, course_id) VALUES (1, 1, 7);
+-- Forum Messages --
+/*
+-- Topic 1 : Question sur un pistolet
+INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
+(1, 'Quel est le meilleur pistolet pour un débutant ?', NOW(), 'Choix de pistolet pour débutant');
 
+-- Réponses à Topic 1
+-- Supposons que le message_id du topic ci-dessus soit 100
+INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
+(100, 2, 'Je recommande le Glock 19 pour les débutants. Il est fiable et facile à utiliser.', NOW()),
+(100, 3, 'Regarde aussi le Sig Sauer P320. Très intuitif pour un débutant.', NOW());
+
+-- Topic 2 : Question sur des accessoires
+INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
+(4, 'Quels accessoires sont indispensables pour une arme de poing ?', NOW(), 'Accessoires indispensables pour arme de poing');
+
+-- Réponses à Topic 2
+-- Supposons que le message_id du topic ci-dessus soit 101
+INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
+(101, 5, 'Un bon holster est crucial. Assure-toi aussi d’avoir un chargeur supplémentaire.', NOW()),
+(101, 6, 'Ne néglige pas l’importance d’un bon viseur. Ça change tout pour la précision.', NOW());
+
+-- Topic 3 : Question sur l'entretien des armes
+INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
+(5, 'Comment bien entretenir son arme pour garantir sa longévité ?', NOW(), 'Entretien des armes');
+
+-- Réponses à Topic 3
+-- Supposons que le message_id du topic ci-dessus soit 102
+INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
+(102, 1, 'Il est essentiel de nettoyer régulièrement son arme, surtout après chaque utilisation au tir.', NOW()),
+(102, 4, 'Utilise toujours les produits recommandés pour le nettoyage et la lubrification de ton arme.', NOW());
+*/
+-- Products --
+
+INSERT INTO Products (name, description, price, stock_quantity, image_link) VALUES
+('Pistolet Glock 19', 'Pistolet semi-automatique calibre 9mm, idéal pour la défense personnelle et les forces de l''ordre.', 550.00, 20, '/assets/ArcturusE3.svg'),
+('Fusil d''assaut AK-47', 'Fusil d''assaut de calibre 7.62mm, reconnu pour sa fiabilité dans toutes les conditions.', 800.00, 15, '/assets/CymaAR15.svg'),
+('Sniper Barrett M82', 'Fusil de précision à longue portée calibre .50, utilisé par les militaires pour des opérations spécifiques.', 4500.00, 5, '/assets/P90FNAEG.svg');
+
+-- other inserts --
 

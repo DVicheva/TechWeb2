@@ -17,7 +17,7 @@ import java.util.List;
 public class CourseController {
     private final CourseService courseService;
 
-    @GetMapping("")
+    @GetMapping("test")
     public List<Course> getAllCourses() {
         return courseService.findAll();
     }

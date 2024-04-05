@@ -1,0 +1,51 @@
+// Stylisation du titre principal
+h1 {
+  color: #3498db; // Bleu
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+// Stylisation des sous-titres
+h2 {
+  color: #2ecc71; // Vert
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+// Stylisation des paragraphes
+p {
+  font-size: 16px;
+  color: #333; // Gris foncé
+}
+
+// Stylisation des boutons
+button {
+  background-color: #e74c3c; // Rouge
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: darken(#e74c3c, 10%);
+  }
+}
+
+// Stylisation de la liste des commandes
+ul {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ecf0f1; // Gris clair
+
+    &:hover {
+      background-color: darken(#ecf0f1, 5%);
+    }
+  }
+}

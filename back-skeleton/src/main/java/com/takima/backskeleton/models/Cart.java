@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_cart_id_seq")
     private int cartId;
 
     @ManyToOne

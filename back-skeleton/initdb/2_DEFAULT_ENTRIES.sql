@@ -49,3 +49,9 @@ INSERT INTO Products (name, description, price, stock_quantity, image_link) VALU
 
 -- other inserts --
 
+Alter SEQUENCE users_user_id_seq restart 10000 INCREMENT BY 50;
+Alter SEQUENCE forum_messages_message_id_seq restart 10000 INCREMENT BY 50;
+Alter SEQUENCE cart_cart_id_seq restart 10000 INCREMENT BY 50;
+Alter SEQUENCE orders_order_id_seq restart 10000 INCREMENT BY 50;
+Alter SEQUENCE order_details_order_detail_id_seq restart 10000 INCREMENT BY 50;
+Alter SEQUENCE products_product_id_seq restart 10000 INCREMENT BY 50;

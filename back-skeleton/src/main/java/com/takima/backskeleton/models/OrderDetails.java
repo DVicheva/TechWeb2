@@ -14,7 +14,7 @@ import lombok.Setter;
 public class OrderDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_details_order_detail_id_seq")
     private long orderDetailId;
 
     @ManyToOne

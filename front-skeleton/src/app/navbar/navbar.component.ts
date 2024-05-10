@@ -14,25 +14,21 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.links = [
-      { name: "Accueil", href: "" },
+      { name: "Accueil", href: "products" },
       { name: "Accessoires", href: "accessoires" },
-      { name: "Collections", href: "collections" },
-      { name: "Goodies", href: "goodies" },
+      { name: "Forum", href: "forum" },
+      { name: "Orders", href: "orders" },
       { name: "Contacts", href: "contacts" },
-      { name: "Panier", href: "panier" }
+      { name: "Panier", href: "cart" }
     ];
 
 
   }
-
-
-
-
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn;
   }
 
   get usernameFromAuth(): string | null {
-    return this.authService.username;
+    return this.authService.getUsername();
   }
 }

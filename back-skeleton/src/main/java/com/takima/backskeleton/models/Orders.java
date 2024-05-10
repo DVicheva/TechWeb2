@@ -1,13 +1,13 @@
 package com.takima.backskeleton.models;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Instant;
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
@@ -17,17 +17,17 @@ import java.util.List;
 public class Orders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_order_id_seq")
-    private long orderId;
-
-    private Instant orderDate;
-
-    private String status;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private Users user;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetails> orderDetails;
+    private LocalDateTime orderDate;
+    private String status;
+    @Column(columnDefinition = "TEXT")
+    private String details;
+    private BigDecimal price;
 }

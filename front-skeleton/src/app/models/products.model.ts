@@ -5,6 +5,7 @@ export interface Products {
   description: string
   imageLink: string
   price: number
+  type: string
   stockQuantity: number
 
 }

@@ -5,7 +5,7 @@
       <a *ngFor="let link of links" mat-list-item [routerLink]="link.href" routerLinkActive="active" [ngClass]="{'special-link': link.name === 'Connexion' || link.name === 'Panier'}">
         <span>{{ link.name }}</span>
       </a>
-      <a mat-list-item [routerLink]="'connexion'" *ngIf="!isLoggedIn" routerLinkActive="active" class="special-link">
+      <a mat-list-item [routerLink]="'users'" *ngIf="!isLoggedIn" routerLinkActive="active" class="special-link">
         <span>Connexion</span>
       </a>
       <!-- Condition pour afficher le nom d'utilisateur s'il est connecté -->

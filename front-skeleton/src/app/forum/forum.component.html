@@ -1,0 +1,27 @@
+<div class="forum-container">
+  <h2>Forum</h2>
+
+  <div *ngIf="selectedTopic; else topicList">
+    <h3>{{ selectedTopic.title || 'Réponses' }}</h3>
+    <p>{{ selectedTopic.message }}</p>
+    <ul>
+      <li *ngFor="let reply of replies">
+        <strong>{{ reply.username }}</strong>: {{ reply.message }} ({{ reply.postedAt | date:'dd/MM/yyyy HH:mm' }})
+      </li>
+    </ul>
+    <textarea [(ngModel)]="newMessage" placeholder="Écrire une réponse..."></textarea>
+    <button (click)="replyToMessage()">Répondre</button>
+    <button (click)="backToTopics()">Retour aux topics</button>
+  </div>
+
+  <ng-template #topicList>
+    <ul>
+      <li *ngFor="let topic of topics" (click)="selectTopic(topic)">
+        <strong>{{ topic.title }}</strong> par {{ topic.username }} ({{ topic.postedAt | date:'dd/MM/yyyy HH:mm' }})
+      </li>
+    </ul>
+    <input [(ngModel)]="newTitle" placeholder="Titre du nouveau topic">
+    <textarea [(ngModel)]="newMessage" placeholder="Écrire un nouveau topic..."></textarea>
+    <button (click)="createTopic()">Créer le topic</button>
+  </ng-template>
+</div>

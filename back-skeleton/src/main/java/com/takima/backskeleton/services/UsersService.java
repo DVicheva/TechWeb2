@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsersService {
 
-
     private final UsersDao usersDao;
 
-    public UsersDto createUser(UsersDto usersDTO) {
+    public UsersDto createUser(UsersDto usersDto) {
         Users user = new Users();
-        BeanUtils.copyProperties(usersDTO, user);
+        BeanUtils.copyProperties(usersDto, user);
         return mapToDTO(usersDao.save(user));
     }
 
@@ -25,10 +24,9 @@ public class UsersService {
         return mapToDTO(user);
     }
 
-    private UsersDto mapToDTO(Users user) {
-        UsersDto usersDTO = new UsersDto();
-        BeanUtils.copyProperties(user, usersDTO);
-        return usersDTO;
+    public UsersDto findByUserId(Long id) {
+        Users user = usersDao.findByUserId(id);
+        return mapToDTO(user);
     }
 
     public UsersDto loginUser(String username, String password) {
@@ -40,36 +38,26 @@ public class UsersService {
         }
     }
 
-    public void logoutUser() {
-
-        // Par exemple, vous pouvez effacer les informations d'identification de l'utilisateur de la session
-
+    public UsersDto save(UsersDto usersDto) {
+        Users user = mapToEntity(usersDto);
+        Users savedUser = usersDao.save(user);
+        return mapToDTO(savedUser);
     }
 
-
-    public UsersDto findByUserId(Long id) {
-        Users user = usersDao.findByUserId(id);
-        return mapToDTO(user);
+    private UsersDto mapToDTO(Users user) {
+        UsersDto usersDto = new UsersDto();
+        BeanUtils.copyProperties(user, usersDto);
+        return usersDto;
     }
 
-    public Users mapToEntity(UsersDto usersDto) {
+    private Users mapToEntity(UsersDto usersDto) {
         Users user = new Users();
-        user.setUserId(usersDto.getId());
-        user.setEmail(usersDto.getEmail());
+        user.setUser_id(usersDto.getUser_id());
         user.setUsername(usersDto.getUsername());
-        user.setFirst_name(usersDto.getFirstName());
-        user.setLast_name(usersDto.getLastName());
-
-
+        user.setPassword(usersDto.getPassword());
+        user.setFirst_name(usersDto.getFirst_name());
+        user.setLast_name(usersDto.getLast_name());
+        user.setEmail(usersDto.getEmail());
         return user;
     }
-
-
-    public UsersDto save(UsersDto userDto) {
-        Users user = mapToEntity(userDto);
-        usersDao.save(user);
-        return userDto;
-    }
 }
-
-

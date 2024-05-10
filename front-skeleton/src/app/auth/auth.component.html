@@ -1,19 +1,56 @@
 <div class="auth-container">
   <ng-container *ngIf="!authService.isLoggedIn; else loggedInTemplate">
-    <!-- Formulaire de connexion -->
-    <form (ngSubmit)="login()">
-      <div class="form-group">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required>
-      </div>
-      <button type="submit">Connexion</button>
-    </form>
+    <div class="tabs">
+      <button (click)="setTab('login')" [class.active]="tab === 'login'">Connexion</button>
+      <button (click)="setTab('signup')" [class.active]="tab === 'signup'">Inscription</button>
+    </div>
+
+    <ng-container *ngIf="tab === 'login'">
+      <!-- Formulaire de connexion -->
+      <form (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur :</label>
+          <input type="text" id="username" name="username" [(ngModel)]="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe :</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required>
+        </div>
+        <button type="submit">Connexion</button>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="tab === 'signup'">
+      <!-- Formulaire d'inscription -->
+      <form (ngSubmit)="signup()">
+        <div class="form-group">
+          <label for="signupUsername">Nom d'utilisateur :</label>
+          <input type="text" id="signupUsername" name="signupUsername" [(ngModel)]="signupUsername" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Mot de passe :</label>
+          <input type="password" id="signupPassword" name="signupPassword" [(ngModel)]="signupPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="signupFirstName">Prénom :</label>
+          <input type="text" id="signupFirstName" name="signupFirstName" [(ngModel)]="signupFirstName" required>
+        </div>
+        <div class="form-group">
+          <label for="signupLastName">Nom de famille :</label>
+          <input type="text" id="signupLastName" name="signupLastName" [(ngModel)]="signupLastName" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email :</label>
+          <input type="email" id="signupEmail" name="signupEmail" [(ngModel)]="signupEmail" required>
+        </div>
+        <button type="submit">Inscription</button>
+      </form>
+    </ng-container>
   </ng-container>
+
   <ng-template #loggedInTemplate>
+    <!-- Composant Profil -->
+    <app-profil></app-profil>
     <!-- Bouton de déconnexion -->
     <button (click)="logout()">Déconnexion</button>
   </ng-template>

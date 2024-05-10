@@ -9,43 +9,32 @@ INSERT INTO Users (username, password, first_name, last_name, email) VALUES
  ('JeanBon', 'password123', 'Jean', 'Bon', 'jean.bon@email.com');
 
 -- Forum Messages --
-/*
--- Topic 1 : Question sur un pistolet
-INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
-(1, 'Quel est le meilleur pistolet pour un débutant ?', NOW(), 'Choix de pistolet pour débutant');
+-- Topics principaux
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (NULL, 1, 'Le M16 est un fusil d assault populaire utilise par l armee americaine', '2024-05-10 15:30:00', 'FAQ sur le M16');
 
--- Réponses à Topic 1
--- Supposons que le message_id du topic ci-dessus soit 100
-INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
-(100, 2, 'Je recommande le Glock 19 pour les débutants. Il est fiable et facile à utiliser.', NOW()),
-(100, 3, 'Regarde aussi le Sig Sauer P320. Très intuitif pour un débutant.', NOW());
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (NULL, 2, 'Le Glock 19 est un pistolet semi-automatique tres utilise par les forces de l ordre', '2024-05-10 15:35:00', 'FAQ sur le Glock 19');
 
--- Topic 2 : Question sur des accessoires
-INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
-(4, 'Quels accessoires sont indispensables pour une arme de poing ?', NOW(), 'Accessoires indispensables pour arme de poing');
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (NULL, 3, 'Le AK-47 est un fusil d assault developpe en Union sovietique', '2024-05-10 15:40:00', 'FAQ sur le AK-47');
 
--- Réponses à Topic 2
--- Supposons que le message_id du topic ci-dessus soit 101
-INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
-(101, 5, 'Un bon holster est crucial. Assure-toi aussi d’avoir un chargeur supplémentaire.', NOW()),
-(101, 6, 'Ne néglige pas l’importance d’un bon viseur. Ça change tout pour la précision.', NOW());
+-- Réponses aux topics
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (1, 2, 'Le M16A2 est une version amelioree du M16', '2024-05-10 15:45:00', NULL);
 
--- Topic 3 : Question sur l'entretien des armes
-INSERT INTO Forum_Messages (user_id, message, posted_at, title) VALUES
-(5, 'Comment bien entretenir son arme pour garantir sa longévité ?', NOW(), 'Entretien des armes');
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (2, 3, 'Le Glock 19 Gen5 est la derniere version du Glock 19', '2024-05-10 15:50:00', NULL);
 
--- Réponses à Topic 3
--- Supposons que le message_id du topic ci-dessus soit 102
-INSERT INTO Forum_Messages (parent_id, user_id, message, posted_at) VALUES
-(102, 1, 'Il est essentiel de nettoyer régulièrement son arme, surtout après chaque utilisation au tir.', NOW()),
-(102, 4, 'Utilise toujours les produits recommandés pour le nettoyage et la lubrification de ton arme.', NOW());
-*/
+INSERT INTO forum_messages (parent_id, user_id, message, posted_at, title)
+VALUES (3, 1, 'Le AK-47 est populaire pour sa simplicite et sa durabilite', '2024-05-10 15:55:00', NULL);
+
 -- Products --
 
-INSERT INTO Products (name, description, price, stock_quantity, image_link) VALUES
-('Pistolet Glock 19', 'Pistolet semi-automatique calibre 9mm, idéal pour la défense personnelle et les forces de l''ordre.', 550.00, 20, '/assets/ArcturusE3.svg'),
-('Fusil d''assaut AK-47', 'Fusil d''assaut de calibre 7.62mm, reconnu pour sa fiabilité dans toutes les conditions.', 800.00, 15, '/assets/CymaAR15.svg'),
-('Sniper Barrett M82', 'Fusil de précision à longue portée calibre .50, utilisé par les militaires pour des opérations spécifiques.', 4500.00, 5, '/assets/P90FNAEG.svg');
+INSERT INTO Products (name, type, description, price, stock_quantity, image_link) VALUES
+('Pistolet Glock 19', 'pistolet', 'Pistolet semi-automatique calibre 9mm, idéal pour la défense personnelle et les forces de l''ordre.', 550.00, 20, '/assets/ArcturusE3.svg'),
+('Fusil d''assaut AK-47', 'pistolet', 'Fusil d''assaut de calibre 7.62mm, reconnu pour sa fiabilité dans toutes les conditions.', 800.00, 15, '/assets/CymaAR15.svg'),
+('Sniper Barrett M82', 'pistolet', 'Fusil de précision à longue portée calibre .50, utilisé par les militaires pour des opérations spécifiques.', 4500.00, 5, '/assets/P90FNAEG.svg');
 
 -- other inserts --
 
@@ -53,5 +42,4 @@ Alter SEQUENCE users_user_id_seq restart 10000 INCREMENT BY 50;
 Alter SEQUENCE forum_messages_message_id_seq restart 10000 INCREMENT BY 50;
 Alter SEQUENCE cart_cart_id_seq restart 10000 INCREMENT BY 50;
 Alter SEQUENCE orders_order_id_seq restart 10000 INCREMENT BY 50;
-Alter SEQUENCE order_details_order_detail_id_seq restart 10000 INCREMENT BY 50;
 Alter SEQUENCE products_product_id_seq restart 10000 INCREMENT BY 50;

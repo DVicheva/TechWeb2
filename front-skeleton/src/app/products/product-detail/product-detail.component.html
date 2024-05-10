@@ -3,7 +3,9 @@
   <p>{{ product.description }}</p>
   <p>Prix : {{ product.price }} €</p>
   <div class="buttons">
-    <button>Add to cart</button>
-    <button>Buy now</button>
+    <button (click)="addToCart()">Ajouter au panier</button>
+    <button (click)="buyNow()">Acheter maintenant</button>
   </div>
+  <!-- Affichage du message d'alerte -->
+  <div *ngIf="alertMessage" class="alert">{{ alertMessage }}</div>
 </div>

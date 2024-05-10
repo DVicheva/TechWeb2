@@ -1,7 +1,7 @@
-import { Orders } from "./orders.model"
+import {Orders} from "./orders.model"
 
 export interface Users {
-  userId: number;
+  user_id: number;
   username: string;
   password: string;
   first_name: string;

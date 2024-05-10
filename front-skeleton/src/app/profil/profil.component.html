@@ -2,13 +2,16 @@
   <h1>Bienvenue {{ user.username }}</h1>
   <div>
     <h2>Vos informations</h2>
-    <form (ngSubmit)="modifierInfos(user)">
-      <label for="name">Nom :</label>
-      <input type="text" id="name" [(ngModel)]="user.username" name="name">
-      <label for="name">Prenom :</label>
-      <input type="text" id="prenom" [(ngModel)]="user.first_name" name="name">
-      <!-- Ajouter d'autres champs au besoin -->
-
+    <form (ngSubmit)="updateProfile()">
+      <label for="first_name">Nom :</label>
+      <input type="text" id="first_name" [(ngModel)]="user.first_name" name="first_name">
+      <br>
+      <label for="last_name">Prénom :</label>
+      <input type="text" id="last_name" [(ngModel)]="user.last_name" name="last_name">
+      <br>
+      <label for="email">Mail :</label>
+      <input type="text" id="email" [(ngModel)]="user.email" name="email">
+      <br>
       <button type="submit">Sauvegarder</button>
     </form>
   </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Users} from "../models/users.model";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
+import { Users } from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class ProfilService {
 
   constructor(private http: HttpClient) {}
 
-  getProfil(id: number): Observable<Users> {
-    return this.http.get<Users>(`${this.apiUrl}/${id}`);
+  getUserByUsername(username: string | null): Observable<Users> {
+    return this.http.get<Users>(`${this.apiUrl}/${username}`);
   }
 
   updateProfil(id: number, user: Users): Observable<Users> {

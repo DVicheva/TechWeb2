@@ -1,0 +1,25 @@
+<!-- cart.component.html -->
+<div class="cart-container">
+  <h2>Panier</h2>
+  <ul>
+    <li *ngFor="let item of cartItems">
+      <div>
+        <strong>Produit:</strong> {{ item.product.name }}
+      </div>
+      <div>
+        <strong>Quantité:</strong> {{ item.quantity }}
+      </div>
+      <div>
+        <strong>Prix:</strong> {{ item.product.price }} €
+      </div>
+      <button (click)="removeItem(item.cartId)">Supprimer</button>
+    </li>
+  </ul>
+  <div *ngIf="cartItems.length === 0">
+    <p>Votre panier est vide.</p>
+  </div>
+  <div *ngIf="cartItems.length > 0">
+    <h3>Total : {{ getTotalPrice() }} €</h3>
+    <button (click)="validateOrder()">Valider</button>
+  </div>
+</div>

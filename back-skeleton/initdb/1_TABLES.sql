@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS Products (
 product_id serial PRIMARY KEY,
 name VARCHAR(255) NOT NULL,
 description TEXT,
+type TEXT,
 image_link TEXT,
 price DECIMAL(10, 2) NOT NULL,
 stock_quantity INT NOT NULL
@@ -21,17 +22,9 @@ order_id serial PRIMARY KEY,
 user_id INT,
 order_date timestamp NOT NULL,
 status VARCHAR(50) NOT NULL,
-FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
-
-CREATE TABLE IF NOT EXISTS Order_Details (
-order_detail_id serial PRIMARY KEY,
-order_id INT,
-product_id INT,
-quantity INT NOT NULL,
+details TEXT NOT NULL,
 price DECIMAL(10, 2) NOT NULL,
-FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-FOREIGN KEY (product_id) REFERENCES Products(product_id)
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Cart (

@@ -17,6 +17,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "products_product_id_seq")
     private int productId;
     private String name;
+    private String type;
     private String description;
     private String imageLink;
     private double price;

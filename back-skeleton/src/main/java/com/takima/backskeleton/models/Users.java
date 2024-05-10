@@ -1,6 +1,7 @@
 package com.takima.backskeleton.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,8 @@ import java.util.List;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_user_id_seq")
-    private long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long user_id;
     private String username;
     private String password;
     private String first_name;
@@ -25,5 +26,6 @@ public class Users {
     private String email;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Orders> orderId;
 }

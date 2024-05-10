@@ -1,0 +1,27 @@
+<div class="orders-container" *ngIf="orders.length > 0; else emptyOrders">
+  <h2>Mes Commandes</h2>
+  <table class="orders-table">
+    <thead>
+    <tr>
+      <th>Numéro de Commande</th>
+      <th>Date</th>
+      <th>Statut</th>
+      <th>Prix</th>
+      <th>Détails</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.orderId }}</td>
+      <td>{{ order.orderDate | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.price | currency }}</td>
+      <td>{{ order.details }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #emptyOrders>
+  <h2>Vous n'avez pas de commandes</h2>
+</ng-template>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from "../services/auth.service";
-import { Users } from "../models/users.model";
-import { Router } from "@angular/router";
+import { AuthService } from '../services/auth.service';
+import { Users } from '../models/users.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -9,36 +9,52 @@ import { Router } from "@angular/router";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  tab: 'login' | 'signup' = 'login';
   username: string = '';
   password: string = '';
-
+  signupUsername: string = '';
+  signupPassword: string = '';
+  signupFirstName: string = '';
+  signupLastName: string = '';
+  signupEmail: string = '';
 
   constructor(protected authService: AuthService, private router: Router) {}
 
+  setTab(tab: 'login' | 'signup') {
+    this.tab = tab;
+  }
+
   login() {
-    this.authService.loginUser(this.username, this.password)
-      .subscribe({
-        next: (user: Users) => {
-          if (user) {
-            // Connexion réussie, rediriger l'utilisateur
-            this.authService.isLoggedIn = true;
-            this.authService.username = this.username;
-            this.router.navigate(['products']);
-          } else {
-            // Gérer le cas où l'utilisateur n'est pas retourné malgré une réponse 200 (si nécessaire)
-          }
-        },
-        error: (error) => {
-          // Gérer les erreurs de connexion ici
-          console.error('Erreur de connexion', error);
+    this.authService.loginUser(this.username, this.password).subscribe({
+      next: (user: Users) => {
+        if (user) {
+          this.authService.setUserIdAndUsername(user.user_id, user.username);
+          console.log(user.user_id);
+          this.router.navigate(['/products']);
         }
-      });
+      },
+      error: (error) => {
+        console.error('Erreur de connexion', error);
+      }
+    });
+  }
+
+  signup() {
+    this.authService.signupUser(this.signupUsername, this.signupPassword, this.signupFirstName, this.signupLastName, this.signupEmail).subscribe({
+      next: (user: Users) => {
+        if (user) {
+          this.authService.setUserIdAndUsername(user.user_id, user.username);
+          this.router.navigate(['/products']);
+        }
+      },
+      error: (error) => {
+        console.error('Erreur d\'inscription', error);
+      }
+    });
   }
 
   logout() {
-    // Déconnexion de l'utilisateur
     this.authService.logout();
+    this.router.navigate(['/users']);
   }
-
-
 }

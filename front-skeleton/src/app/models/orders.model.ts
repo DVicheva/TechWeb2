@@ -1,10 +1,8 @@
-import {Users} from "./users.model";
-import {OrderDetails} from "./orderDetails.model";
-
 export interface Orders {
   orderId: number;
-  orderDate: Date;
+  userId: number;
+  orderDate: string;
   status: string;
-  user: Users;
-  orderDetails: OrderDetails[];
+  details: string;
+  price: number;
 }

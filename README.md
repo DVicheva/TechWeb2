@@ -189,15 +189,15 @@ Pour démarrer le projet, 3 étapes à suivre :
 <h3> Nos fonctionnalités </h3><br>
 On vous laisse découvrir !! --> J'aurais aimé écrire ça, mais voici une petite liste de ce qui est disponible : <br>
 <br>
-- Inscription / Connexion 
-- Acheter des produits 
-- Mettre des produits dans un panier 
-- Valider le panier 
-- Avoir l'historique des commandes d'un utilisateur 
-- Créer des discussions avec un topic et un message 
-- Pouvoir répondre aux messages 
-- Faire des recherches dans la page des produits (recherche qui concerne le nom du produit) 
-- Appliquer un filtre sur prix 
+- Inscription / Connexion <br>
+- Acheter des produits <br>
+- Mettre des produits dans un panier <br>
+- Valider le panier <br>
+- Avoir l'historique des commandes d'un utilisateur <br>
+- Créer des discussions avec un topic et un message <br>
+- Pouvoir répondre aux messages <br>
+- Faire des recherches dans la page des produits (recherche qui concerne le nom du produit) <br>
+- Appliquer un filtre sur prix <br>
 
 La partie sur les discussions faisaient parti de nos bonus si on avait le temps. <br>
 Par ailleurs, un utilisateur ne peut pas aller dans les pages Panier, Commandes ou Forum s'il ne s'est pas connecté auparavant, pareil pour la page détaillée d'un produit. 

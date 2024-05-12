@@ -1,13 +1,96 @@
-<div *ngIf="products.length; else noProducts" class="cards-container">
-  <div *ngFor="let product of products" class="card" >
-    <a [routerLink]="['/products/id/', product.productId]" style="text-decoration: none; color: inherit;">
-    <img [src]="product.imageLink" alt="image" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://cdn.tailwindcss.com" rel="stylesheet">
+
+<!--Carrosel code -->
+<div >
+  <div style="background: transparent;">
+    <div class="carrosel-class">
+      <div class="carousel-item">
+        <div class="slide-image"
+             style="background-image: url('assets/bannière.jpg');">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="slide-image"
+             style="background-image: url('assets/bannière1.jpg');">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="slide-image"
+             style="background-image: url('assets/bannière2.jpg');">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="slide-image"
+             style="background-image: url('assets/bannière3.jpg');">
+        </div>
+      </div>
     </div>
-    </a>
   </div>
 </div>
+<section class="bg-white dark:bg-gray-900 bg-cover bg-fixed" style="background-image: url('assets/Fond.jpg'); ">
+  <div class="bg-black border-3 border-black rounded-b-3xl " style="margin-bottom: 10px; height: 45px;">
+    <div class="wrap">
+      <div class="search">
+        <form (ngSubmit)="searchProducts()">
+          <div class="search-bar" style="margin-top: 6px;">
+            <input class="searchTerm" type="text" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Rechercher des produits par leur nom...">
+            <button (click)="searchProducts()" class="searchButton">chercher <i class="fa fa-search"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container px-6 py-13 mx-auto">
+
+    <div class="lg:flex lg:-mx-2 bg-white border-4 border-gray-400 rounded-3xl">
+      <!-- Filter Section -->
+
+      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+        <div class="mb-4">
+          <label style="margin-top: 70px" for="price-min" class="block text-sm font-medium text-gray-700">Prix Minimum :</label>
+          <input type="number" id="price-min" [(ngModel)]="priceMin" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+
+          <label for="price-max" class="block text-sm font-medium text-gray-700">Prix Maximum:</label>
+          <input type="number" id="price-max" [(ngModel)]="priceMax" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+
+          <button (click)="applyFilter()" class="mt-3 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply</button>
+        </div>
+      </div>
+
+      <!-- Product Display Section -->
+      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5">
+        <div class="flex items-center justify-between text-sm tracking-widest uppercase">
+          <p class="text-gray-500 dark:text-gray-300">Total produit : {{ filteredProducts.length }}</p>
+          <div>
+            <!-- Pagination Controls -->
+            <div *ngFor="let page of [].constructor(maxPage); let pageIndex = index" (click)="setPage(pageIndex)" class="inline-block cursor-pointer px-3 py-1 border border-gray-300 rounded">
+              {{ pageIndex + 1 }}
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="filteredProducts.length; else noProducts" class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div *ngFor="let product of filteredProducts.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)" class="flex flex-col items-center justify-center w-full max-w-lg mx-auto rounded-lg border border-gray-200 shadow-md">
+            <a [routerLink]="['/products/id/', product.productId]">
+              <img class="object-contain rounded-md xl:h-72" [src]="product.imageLink">
+              <h4 style="color: black; font-weight: bolder; font-size: 18px">{{ product.name }}</h4>
+              <p class="text-blue-500">Prix : {{ product.price }}€</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- No Products Template -->
+        <ng-template #noProducts>
+          <div class="text-center py-10">
+            <p class="text-gray-500 dark:text-gray-300">Aucun produit à afficher</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+
 <ng-template #noProducts>
   <p>Aucun produit disponible.</p>
 </ng-template>

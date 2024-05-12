@@ -1,16 +1,10 @@
-/* Faire un truc basique */
-.contacts-container {
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
   padding: 20px;
-
-  h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
-  p {
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
+  border: 1px solid #000000;
+  color: #71ff00;
 }

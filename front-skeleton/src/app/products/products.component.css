@@ -1,39 +1,121 @@
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
 
-}
-
-.card {
-  border: 2px solid black; /* Bordure noire */
-  border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s;
-  background-color: white; /* Fond blanc pour la carte */
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-img-top {
+.search {
   width: 100%;
-  height: 200px;
-  object-fit: contain; /* Changez cover par contain */
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+  height: 100%; /* fill the height of the parent */
+  margin-bottom: 5px;
+}
+.search-bar {
+  display: flex; /* Use flexbox to manage children */
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start; /* Align children to the start */
 }
 
-.card-body {
-  padding: 15px;
+.searchTerm {
+  flex-grow: 1; /* Takes all available space */
+  border: 3px solid #eeeeee;
+  border-right: none; /* Removes border between input and button */
+  padding: 5px;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  color: #eeeeee;
+  height: 34px; /* Ensure it matches button height for aesthetics */
 }
 
-.card-title {
-  margin-bottom: 10px;
+.searchButton {
+  font-weight: bold;
+  width: 110px; /* Fixed width for the button */
+  border: 1px solid #3b81f4;
+  background: #3b81f4;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  font-size: 19px;
+  height: 34px; /* Match height of input field */
 }
 
-.card-text {
-  font-size: 14px;
-  color: #666;
+
+.searchTerm:focus{
+  color: #252526;
 }
+
+.carrosel-class{
+  width: 100%;
+  height: 300px;
+
+}
+.carousel-item .slide-image {
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.carousel-item {
+
+  width: 100%;
+  height: 300px;
+  border: none;
+  top: 0;
+  left: 100%;
+}
+.carousel-item.active {
+  left: 0;
+  transition: all 1s ease-out;
+}
+.carousel-item div {
+  height: 100%;
+}
+
+
+.range-slider input[type=range] {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Specific width is required for Firefox */
+  height: 10px; /* Specified height for the track */
+  background: transparent; /* Remove default track styles */
+  outline: none;
+}
+
+.range-slider input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Required for proper thumb styling in WebKit browsers */
+  appearance: none;
+  width: 20px; /* Thumb size */
+  height: 20px; /* Thumb size */
+  background: #FFF; /* Thumb color */
+  cursor: pointer; /* Cursor on hover */
+  border: 2px solid yellow; /* Border color as yellow */
+}
+
+.range-slider input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #FFF;
+  cursor: pointer;
+  border: 2px solid yellow;
+}
+
+.range-slider input[type=range]::-webkit-slider-runnable-track {
+  height: 10px;
+  cursor: pointer;
+  animate: 1s;
+  box-shadow: none;
+  background: linear-gradient(to right, yellow 50%, #ddd 50%); /* Yellow track before the thumb */
+}
+
+.range-slider input[type=range]::-moz-range-track {
+  height: 10px;
+  cursor: pointer;
+  background: linear-gradient(to right, yellow 50%, #ddd 50%);
+}
+
+.range-slider output {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+}
+
+
+

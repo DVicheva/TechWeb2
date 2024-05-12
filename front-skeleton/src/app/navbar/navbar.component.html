@@ -1,15 +1,40 @@
 <nav>
   <div>
-    <img src="assets/takima-logo.png" routerLink="" />
-    <mat-nav-list>
-      <a *ngFor="let link of links" mat-list-item [routerLink]="link.href" routerLinkActive="active" [ngClass]="{'special-link': link.name === 'Connexion' || link.name === 'Panier'}">
-        <span>{{ link.name }}</span>
-      </a>
-      <a mat-list-item [routerLink]="'users'" *ngIf="!isLoggedIn" routerLinkActive="active" class="special-link">
-        <span>Connexion</span>
-      </a>
-      <!-- Condition pour afficher le nom d'utilisateur s'il est connecté -->
-      <a mat-list-item [routerLink]="'users'" *ngIf="isLoggedIn" class="username"><span>{{ usernameFromAuth }}</span></a>
-    </mat-nav-list>
+    <img src="assets/GunMarket_Logo2.png" routerLink="" />
+    <!-- Conteneur pour les liens à gauche -->
+    <div class="left-links">
+      <mat-nav-list>
+        <a *ngFor="let link of links" mat-list-item [routerLink]="link.href" routerLinkActive="active" [ngClass]="{'special-link': link.name === 'Connexion' || link.name === 'Panier'}"
+           (mouseover)="toggleUnderline(link, true)"
+           (mouseout)="toggleUnderline(link, false)">
+          <span>{{ link.name }}</span>
+          <div [ngStyle]="link.underlineStyle" class="underline"></div>
+          <img [ngStyle]="link.iconStyle" src="assets/Bullet2.png" class="nav-underline-img" alt="">
+        </a>
+      </mat-nav-list>
+    </div>
+    <!-- Conteneur pour les liens à droite -->
+    <div class="right-links">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="'cart'" routerLinkActive="active" class="special-link"
+           (mouseover)="toggleUnderline(panierStyle, true)"
+           (mouseout)="toggleUnderline(panierStyle, false)">
+          <span>Panier</span>
+          <div [ngStyle]="panierStyle.underlineStyle" class="underline"></div>
+          <img [ngStyle]="panierStyle.iconStyle" src="assets/Bullet2.png" class="nav-underline-img" alt="">
+        </a>
+        <a mat-list-item [routerLink]="'users'" *ngIf="!isLoggedIn" routerLinkActive="active" class="special-link"
+           (mouseover)="toggleUnderline(connexionStyle, true)"
+           (mouseout)="toggleUnderline(connexionStyle, false)">
+          <span>Connexion</span>
+          <div [ngStyle]="connexionStyle.underlineStyle" class="underline"></div>
+          <img [ngStyle]="connexionStyle.iconStyle" src="assets/Bullet2.png" class="nav-underline-img" alt="">
+        </a>
+
+        <a mat-list-item [routerLink]="'users'" *ngIf="isLoggedIn" class="username">
+          <span>{{ usernameFromAuth }}</span>
+        </a>
+      </mat-nav-list>
+    </div>
   </div>
 </nav>

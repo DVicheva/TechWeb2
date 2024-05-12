@@ -2,12 +2,19 @@
 
 nav {
   height: 80px;
-  background: linear-gradient(to right, theme.$common-purple, theme.$common-red);
+  background: linear-gradient(to right,#252526 ,#252526);
 
   div {
     height: 100%;
     display: flex;
     align-items: center;
+
+    .right-links{
+      justify-content: space-between;
+      margin-left: auto;
+      //margin-right: 5px;
+      width: 300px;
+    }
 
     img {
       margin-left: 20px;
@@ -20,25 +27,52 @@ nav {
     }
   }
 }
-
+.left-links mat-nav-list {
+  margin-left: 0;
+}
 mat-nav-list {
-  margin-left: 50px;
+  margin-left: 100px;
   display: flex;
   flex-direction: row;
   width: 100%;
+
+  span{
+    color: white;
+  }
   a {
     font-size: large;
-    color: theme.$white;
     transition: 0.3s;
+    width: fit-content;
+
 
     &:hover {
       transform: scale(1.2);
     }
 
     &.special-link {
-
-
-
     }
+    .underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0; // Initially hidden, will be 100% on hover
+      height: 2px; // Height of the underline
+      background-color: rgb(255, 255, 255); // Color of the underline
+      transition: width 0.5s ease;
+      margin-bottom: 4px;
+    }
+
+    .nav-underline-img {
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      width: 20px; // Adjust based on your image size
+      height: 5px; // Adjust based on your image size
+      opacity: 0; // Initially hidden, will be 1 on hover
+      position: absolute;
+      bottom: 0; // Adjust based on your layout
+      left: 50%; // Center horizontally
+      transform: translateX(-150%); // Center horizontally
+      margin-bottom: 2.5px;
+    }
+
   }
 }

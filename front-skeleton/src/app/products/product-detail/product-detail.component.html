@@ -1,11 +1,150 @@
-<div *ngIf="product" class="product-detail">
-  <h2>{{ product.name }}</h2>
-  <p>{{ product.description }}</p>
-  <p>Prix : {{ product.price }} €</p>
-  <div class="buttons">
-    <button (click)="addToCart()">Ajouter au panier</button>
-    <button (click)="buyNow()">Acheter maintenant</button>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!---Boxicons CDN Setup for icons-->
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<div class="container" *ngIf="product">
+  <div class="single-product">
+    <div class="row">
+      <div class="col-6">
+        <div class="product-image">
+          <div class="product-image-main">
+            <img [src]="product.imageLink" alt="" id="product-main-image">
+          </div>
+          <!--
+          <div class="product-image-slider">
+            <img [src]="product.imageLink" alt=""  class="image-list">
+            <img [src]="product.imageLink" alt=""  class="image-list">
+            <img [src]="product.imageLink" alt=""  class="image-list">
+            <img [src]="product.imageLink" alt=""  class="image-list">
+          </div>
+          -->
+        </div>
+      </div>
+      <div class="col-6">
+        <!--
+        <div class="breadcrumb">
+          <span><a href="#">Home</a></span>
+          <span><a href="#">Product</a></span>
+          <span class="active">T-shirt</span>
+        </div> -->
+
+        <div class="product">
+          <div class="product-title">
+            <h2>{{ product.name }}</h2>
+          </div>
+
+          <div class="product-rating">
+            <span><i class="bx bxs-star"></i></span>
+            <span><i class="bx bxs-star"></i></span>
+            <span><i class="bx bxs-star"></i></span>
+            <span><i class="bx bxs-star"></i></span>
+            <span><i class="bx bxs-star"></i></span>
+            <span class="review">(47 Avis)</span>
+          </div>
+
+
+          <div class="product-price">
+            <span class="offer-price">{{ totalPrice }}€</span>
+          </div>
+
+          <span class="divider"></span>
+          <div class="product-details">
+            <h3>Description</h3>
+            <p>{{ product.description }}</p>
+          </div>
+
+          <!-- code pour mes taile pour les habies
+          <div class="product-size">
+            <h4>Size</h4>
+            <div class="size-layout">
+              <input type="radio" name="size" value="S" id="1" class="size-input">
+              <label for="1" class="size">S</label>
+
+              <input type="radio" name="size" value="M" id="2" class="size-input">
+              <label for="2" class="size">M</label>
+
+              <input type="radio" name="size" value="L" id="3" class="size-input">
+              <label for="3" class="size">L</label>
+
+              <input type="radio" name="size" value="XL" id="4" class="size-input">
+              <label for="4" class="size">XL</label>
+
+              <input type="radio" name="size" value="XXL" id="5" class="size-input">
+              <label for="5" class="size">XXL</label>
+            </div>
+          </div>
+
+          <span class="divider"></span>
+          <div class="product-color">
+            <h4 style="font-size: 18px;font-weight: 500;">Color</h4>
+            <div class="color-layout">
+              <input type="radio" name="color"  value="black" class="color-input">
+              <label for="black" class="black"></label>
+              <input type="radio" name="color"  value="red" class="color-input">
+              <label for="red" class="red"></label>
+
+              <input type="radio" name="color"  value="blue" class="color-input">
+              <label for="blue" class="blue"></label>
+            </div>
+          </div>-->
+          <span class="divider"></span>
+          <div class="quantity-selector">
+            <button (click)="changeQuantity(-1)"> - </button>
+            <input id="quantityNum" type="text" name="quantityNum" value="1" readonly />
+            <button (click)="changeQuantity(1)">+</button>
+          </div>
+
+          <span class="divider"></span>
+
+          <div class="product-btn-group">
+
+
+            <div class="buttons">
+              <button class="blob-btn" (click)="buyNow()">
+                Acheter
+                <span class="blob-btn__inner">
+      <span class="blob-btn__blobs">
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+      </span>
+    </span>
+              </button>
+              <br/>
+              <button class="blob-btn" (click)="addToCart()">
+                Ajouter au panier
+                <span class="blob-btn__inner">
+      <span class="blob-btn__blobs">
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+      </span>
+    </span>
+              </button>
+              <!-- Affichage du message d'alerte -->
+              <div *ngIf="alertMessage" class="alert">{{ alertMessage }}</div>
+              <br/>
+
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                  <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                  </filter>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Affichage du message d'alerte -->
-  <div *ngIf="alertMessage" class="alert">{{ alertMessage }}</div>
+
 </div>

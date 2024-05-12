@@ -1,4 +1,3 @@
-// product-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
@@ -19,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   product: Products | null = null;
   user: Users | null = null;
   alertMessage: string = '';
+  totalPrice: number = 0; // Ajout pour gérer le prix total en fonction de la quantité
 
   constructor(
     private route: ActivatedRoute,
@@ -34,11 +34,34 @@ export class ProductDetailComponent implements OnInit {
     this.loadUser();
   }
 
+  changeQuantity(change: number): void {
+    const quantityInput = document.getElementById('quantityNum') as HTMLInputElement;
+    if (quantityInput && this.product) {
+      let currentQuantity = parseInt(quantityInput.value);
+      let newQuantity = currentQuantity + change;
+
+      if (newQuantity < 1) newQuantity = 1;
+      if (newQuantity > 99) newQuantity = 99;
+
+      quantityInput.value = newQuantity.toString();
+      this.updateTotalPrice(newQuantity);
+    }
+  }
+
+  updateTotalPrice(newQuantity: number): void {
+    if (this.product) {
+      this.totalPrice = newQuantity * this.product.price;
+    }
+  }
+
   loadProduct(): void {
     this.route.params.subscribe(params => {
       const productId = +params['id'];
       this.productService.getProductById(productId).subscribe(product => {
         this.product = product;
+        if (this.product) {
+          this.updateTotalPrice(1);  // Initialisez totalPrice avec la quantité initiale 1
+        }
       });
     });
   }
@@ -54,17 +77,19 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(): void {
     if (this.product && this.user) {
+      const quantityInput = document.getElementById('quantityNum') as HTMLInputElement;
+      const quantity = parseInt(quantityInput.value);
+
       const cartItem: Cart = {
         cartId: 0,
         user: this.user,
         product: this.product,
-        quantity: 1
+        quantity: quantity
       };
 
       this.cartService.addProductToCart(this.user.user_id, cartItem).subscribe({
         next: () => {
-          this.alertMessage = `${this.product?.name} a été ajouté au panier.`;
-
+          this.alertMessage = `${this.product?.name} a été ajouté au panier avec ${quantity} unité(s).`;
           setTimeout(() => {
             this.alertMessage = '';
           }, 3000);
@@ -84,19 +109,22 @@ export class ProductDetailComponent implements OnInit {
 
   buyNow(): void {
     const userId = this.authService.getUserId();
+    const quantityInput = document.getElementById('quantityNum') as HTMLInputElement;
+    const quantity = parseInt(quantityInput.value);
+
     if (this.product && userId !== null) {
       const order: Orders = {
         orderId: 0,
         userId: userId,
         orderDate: new Date().toISOString(),
         status: 'En cours',
-        details: `[${this.product.name}, 1]`,
-        price: this.product.price
+        details: `[${this.product.name}, ${quantity}]`,
+        price: this.totalPrice
       };
 
       this.ordersService.createOrder(order).subscribe({
         next: () => {
-          this.alertMessage = `Achat immédiat de ${this.product?.name} réussi !`;
+          this.alertMessage = `Achat immédiat de ${this.product?.name} réussi pour ${quantity} unité(s) !`;
           this.router.navigate(['/orders']);
 
           setTimeout(() => {

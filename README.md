@@ -170,6 +170,8 @@ Alors ça marche ?
 <p align="center"><img src="img-readme/main-readme/img32.png" width="900"/></p>
 
 --> Ne pas oublier de rajouter le .env avec comme user : 'root', password 'toor' et nom de la base : 'default-database'. 
+--> Le projet a été réalisé avec TailWind, il faut aussi l'installer avec la commande suivante : 
+    - npm install -D tailwindcss
 
 Pour démarrer le projet, 3 étapes à suivre : 
 

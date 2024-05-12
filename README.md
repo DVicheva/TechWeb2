@@ -170,24 +170,25 @@ Alors ça marche ?
 <p align="center"><img src="img-readme/main-readme/img32.png" width="900"/></p>
 
 --> Ne pas oublier de rajouter le .env avec comme user : 'root', password 'toor' et nom de la base : 'default-database'. 
---> Le projet a été réalisé avec TailWind, il faut aussi l'installer avec la commande suivante : 
-    - npm install -D tailwindcss
-
-Pour démarrer le projet, 3 étapes à suivre : 
-
-1. Démarrer le backend :
-    Se placer dans le dossier backend avec la commande cd 
-    Faire un 'docker-compose up -d'
-2. Démarrer le front-end :
-    Se placer dans le dossier frontend avec la commande cd
-    Faire un 'npm start' 
-3. Démarrer l'app java : 
-    Aller dans le dossier back > src > main > java > et démarrer le BackSkeletonApplication (désolé on a oublié de les renommer)
-
 <br>
-<h3> Nos fonctionnalités </h3>
-On vous laisse découvrir !! --> J'aurais aimé écrire ça, mais voici une petite liste de ce qui est disponible : 
-
+--> Le projet a été réalisé avec TailWind, il faut aussi l'installer avec la commande suivante : <br>
+    - npm install -D tailwindcss
+<br>
+Pour démarrer le projet, 3 étapes à suivre : 
+<br>
+1. Démarrer le backend : <br>
+    Se placer dans le dossier backend avec la commande cd <br>
+    Faire un 'docker-compose up -d'<br>
+2. Démarrer le front-end :<br>
+    Se placer dans le dossier frontend avec la commande cd<br>
+    Faire un 'npm start' <br>
+3. Démarrer l'app java : <br>
+    Aller dans le dossier back > src > main > java > et démarrer le BackSkeletonApplication (désolé on a oublié de les renommer)<br>
+<br>
+<br>
+<h3> Nos fonctionnalités </h3><br>
+On vous laisse découvrir !! --> J'aurais aimé écrire ça, mais voici une petite liste de ce qui est disponible : <br>
+<br>
 - Inscription / Connexion 
 - Acheter des produits 
 - Mettre des produits dans un panier 
@@ -198,7 +199,7 @@ On vous laisse découvrir !! --> J'aurais aimé écrire ça, mais voici une peti
 - Faire des recherches dans la page des produits (recherche qui concerne le nom du produit) 
 - Appliquer un filtre sur prix 
 
-La partie sur les discussions faisaient parti de nos bonus si on avait le temps. 
+La partie sur les discussions faisaient parti de nos bonus si on avait le temps. <br>
 Par ailleurs, un utilisateur ne peut pas aller dans les pages Panier, Commandes ou Forum s'il ne s'est pas connecté auparavant, pareil pour la page détaillée d'un produit. 
 
 
